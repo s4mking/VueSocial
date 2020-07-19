@@ -2,9 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import Home from '../views/Home.vue'
  import connect from '../pages/connection.vue'
- import friends from '../components/Friends.vue'
+ import friends from '../pages/Friends.vue'
+ import User from '../pages/User.vue'
  import Profile from '../pages/Profile.vue'
  import Users from '../pages/Users.vue'
+ import Requests from '../pages/Requests.vue'
  import store from '../store'
 // import Secure from './components/Secure.vue'
 
@@ -15,17 +17,6 @@ Vue.use(VueRouter)
     path: '/auth',
     name: 'Connect',
     component: connect
-  },
-  {
-    path: '/about',
-    name: 'About',
-    meta: { 
-      requiresAuth: true
-    },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
     path: '/friends',
@@ -44,12 +35,28 @@ Vue.use(VueRouter)
     },
   },
   {
-    path: '/users',
+    path: '/',
     name: 'Users',
     component:Users,
     meta: { 
       requiresAuth: true
     },
+  },
+  {
+    path: '/requests',
+    name: 'Requests',
+    component:Requests,
+    meta: { 
+      requiresAuth: true
+    },
+  },
+  {
+  path: '/user/:id',
+  name: 'user',
+  component: User,
+  meta: { 
+    requiresAuth: true
+  },
   }
 ]
 

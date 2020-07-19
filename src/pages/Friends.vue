@@ -1,33 +1,35 @@
 <template>
-  <div id="person">
-    <h1>Mon profil</h1>
-    <Person :person="me" :button="false" :buttontest="false" />
+  <div id="freinds">
+    <h1>Mes amis</h1>
+    <Person
+      v-for="friend in friends"
+      :key="friend.id"
+      :person="friend"
+      :button="true"
+      :buttontest="false"
+    />
   </div>
 </template>
 
 <script>
 import Person from "@/components/Person";
+
 export default {
-  name: "Profile",
+  name: "Friends",
   components: { Person },
   data: function() {
     return {
-      me: {}
+      friends: []
     };
   },
   mounted() {
-    this.$store.dispatch("getMe").then(resp => {
-      console.log(resp);
-      this.me = this.$store.state.me;
-      console.log(this.me);
+    this.$store.dispatch("getFriends").then(resp => {
+      this.friends = resp.data;
     });
   }
 };
 </script>
 <style scoped>
-.button {
-  display: none;
-}
 #login {
   width: 500px;
   border: 1px solid #cccccc;

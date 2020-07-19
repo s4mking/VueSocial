@@ -21,7 +21,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    register() {
       this.$store
         .dispatch("register", this.input)
         .then(() => this.$router.push("/"))

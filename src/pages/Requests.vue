@@ -1,33 +1,29 @@
 <template>
-  <div id="person">
-    <h1>Mon profil</h1>
-    <Person :person="me" :button="false" :buttontest="false" />
+  <div id="request">
+    <h1>Mes requetes</h1>
+    <Request v-for="request in requests" :key="request.id" :request="request" />
   </div>
 </template>
 
 <script>
-import Person from "@/components/Person";
+import Request from "@/components/Request";
 export default {
   name: "Profile",
-  components: { Person },
+  components: { Request },
   data: function() {
     return {
-      me: {}
+      requests: []
     };
   },
   mounted() {
-    this.$store.dispatch("getMe").then(resp => {
+    this.$store.dispatch("getFriendshipRequest").then(resp => {
+      this.requests = resp;
       console.log(resp);
-      this.me = this.$store.state.me;
-      console.log(this.me);
     });
   }
 };
 </script>
 <style scoped>
-.button {
-  display: none;
-}
 #login {
   width: 500px;
   border: 1px solid #cccccc;

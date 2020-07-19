@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from '@/router'
 import eventService from '../eventService'
 Vue.use(Vuex)
 
@@ -102,11 +103,12 @@ export default new Vuex.Store({
       console.log(reject)
     })
   },
-  getFriend({commit}){
+  getFriends({commit}){
     return new Promise((resolve, reject) => {
      eventService.auth.getFriendship()
       .then(resp => {
-        const friends = resp.data
+        const friends = resp.data 
+        console.log(resp.data)
         commit('listfriend', friends)
         resolve(resp)
       })
@@ -136,6 +138,110 @@ export default new Vuex.Store({
         console.log(resp)
        const users = resp.data
        commit('users', users)
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
+  getFriendshipRequest(){
+    return new Promise((resolve, reject) => {
+     eventService.auth.getFriendshipRequest()
+      .then(resp => {
+        console.log(resp.data)
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
+  getUserProfile(){
+    return new Promise((resolve, reject) => {
+     eventService.auth.getUserProfile({
+       currentRoute:router.currentRoute.params.id
+     })
+      .then(resp => {
+        console.log(resp)
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
+  acceptRequest({commit},requestedId){
+    console.log(commit)
+    console.log(requestedId)
+
+    return new Promise((resolve, reject) => {
+     eventService.auth.acceptRequest({
+      requestedId:requestedId
+     })
+      .then(resp => {
+        console.log(resp)
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
+  rejectRequest({commit},requestedId){
+    console.log(commit)
+    return new Promise((resolve, reject) => {
+     eventService.auth.rejectRequest({
+      requestedId:requestedId
+     })
+      .then(resp => {
+        console.log(resp)
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
+  sendFriendRequest({commit},requestedId){  
+    console.log(commit)
+    return new Promise((resolve, reject) => {
+      console.log(requestedId)
+     eventService.auth.sendFriendRequest({
+      requestedId:requestedId
+     })
+      .then(resp => {
+        console.log(resp)
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
+  blockUser({commit},requestedId){
+    console.log(commit)
+    return new Promise((resolve, reject) => {
+     eventService.auth.blockUser({
+      requestedId:requestedId
+     })
+      .then(resp => {
+        console.log(resp)
+        resolve(resp.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
+  deleteBlockUser({commit},requestedId){
+    console.log(commit)
+    return new Promise((resolve, reject) => {
+     eventService.auth.deleteBlockUser({
+      requestedId:requestedId
+     })
+      .then(resp => {
+        console.log(resp)
         resolve(resp.data)
       })
       .catch(err => {

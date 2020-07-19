@@ -1,10 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
-      <router-link to="/users">Users</router-link>|
+      <router-link to="/">Users</router-link>|
       <router-link to="/profile">Me</router-link>|
+      <router-link to="/requests">Requests</router-link>|
       <router-link to="/friends">Friends</router-link>
       <span v-if="isLoggedIn">
         |

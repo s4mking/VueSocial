@@ -1,7 +1,7 @@
 <template>
   <div id="person">
     <h1>Mon profil</h1>
-    <Person :person="me" :button="false" :buttontest="false" />
+    <Person :person="user" :button="true" :buttontest="true" />
   </div>
 </template>
 
@@ -12,22 +12,17 @@ export default {
   components: { Person },
   data: function() {
     return {
-      me: {}
+      user: {}
     };
   },
   mounted() {
-    this.$store.dispatch("getMe").then(resp => {
-      console.log(resp);
-      this.me = this.$store.state.me;
-      console.log(this.me);
+    this.$store.dispatch("getUserProfile").then(resp => {
+      this.user = resp;
     });
   }
 };
 </script>
 <style scoped>
-.button {
-  display: none;
-}
 #login {
   width: 500px;
   border: 1px solid #cccccc;

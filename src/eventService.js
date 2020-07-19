@@ -25,13 +25,13 @@ export default {
             return apiClient.get('/friendship/request', payload)
         },
         acceptRequest(payload) {
-            return apiClient.get('/friendship/request/:id/accept', payload)
+            return apiClient.get('/friendship/request/'+payload.requestedId+'/accept', payload)
         },
-        rejectRequest() {
-            return apiClient.get('/friendship/request/:id/reject')
+        rejectRequest(payload) {
+            return apiClient.get('/friendship/request/'+payload.requestedId+'/reject', payload)
         },
-        sendFriendRequest() {
-            return apiClient.post('/friendship/request')
+        sendFriendRequest(payload) {
+            return apiClient.post('/friendship/request',payload)
         },
         removeFriendRequest(payload) {
             return apiClient.delete('/request/:requestedId', payload)
@@ -39,17 +39,17 @@ export default {
         getProfile() {
             return apiClient.get('/user/me')
         },
-        getUserProfile() {
-            return apiClient.get('/user/:id')
+        getUserProfile(payload) {
+            return apiClient.get('/user/'+payload.currentRoute,payload)
         },
         getAllUser() {
             return apiClient.get('/user')
         },
         blockUser(payload) {
-            return apiClient.get('/user/block/:id', payload)
+            return apiClient.get('/user/block/'+payload.requestedId, payload)
         },
         deleteBlockUser(payload) {
-            return apiClient.delete('/user/block/:id', payload)
+            return apiClient.delete('/user/block/'+payload.requestedId, payload)
         }
     }
 }

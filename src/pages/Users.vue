@@ -1,7 +1,15 @@
 <template>
   <div id="person">
-    <h1>Mon profil</h1>
-    <Person v-for="person in users" :key="person.id" :person="person" />
+    <h1>Utilisateurs</h1>
+    <div class="subcontent">
+      <Person
+        v-for="person in users"
+        :key="person.id"
+        :person="person"
+        :button="true"
+        :buttontest="true"
+      />
+    </div>
   </div>
 </template>
 
@@ -23,6 +31,10 @@ export default {
 };
 </script>
 <style scoped>
+.subcontent {
+  display: flex;
+  flex-wrap: wrap;
+}
 #login {
   width: 500px;
   border: 1px solid #cccccc;
