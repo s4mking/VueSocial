@@ -1,14 +1,19 @@
 <template>
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 35rem;">
     <img class="card-img-top" alt="Card image cap" :src="picture" />
     <div class="card-body">
       <h5 class="card-title">{{person.name}}</h5>
       <p class="card-text">{{person.username}}</p>
       <router-link :to="'/user/'+person.id">{{person.id}}</router-link>
       <div v-if="button" class="button">
-        <button v-if="buttontest" type="button" v-on:click="request()">Ajouter</button>
-        <button type="button" v-on:click="block()">Bloquer</button>
-        <button type="button" v-on:click="unblock()">Debloquer</button>
+        <button
+          v-if="buttontest"
+          class="btn btn-success"
+          type="button"
+          v-on:click="request()"
+        >Ajouter</button>
+        <button type="button" class="btn btn-danger" v-on:click="block()">Bloquer</button>
+        <button type="button" class="btn btn-info" v-on:click="unblock()">Debloquer</button>
       </div>
 
       <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
